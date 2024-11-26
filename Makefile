@@ -1,29 +1,33 @@
 # Compiler und Flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux
-
+CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -I./libft -I./libft/gnl -I./libft/ft_printf
 # Bibliotheken
 MLX = minilibx-linux/libmlx_Linux.a
 MLX_FLAGS = -Lminilibx-linux -lmlx -lm -lXext -lX11
+LIBFT = ./libft/libft.a
 
 # Ziel
 NAME = so_long
 
 # Quellen und Objekte
-SRC_DIR = src
-SRCS = $(SRC_DIR)/so_long.c
+SRCS = so_long.c get_map.c
 OBJS = $(SRCS:.c=.o)
 
 # Regel für das Ziel
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(MLX_FLAGS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(OBJS) $(MLX) $(MLX_FLAGS) $(LIBFT) $(CFLAGS) -o $(NAME)
+
+$(LIBFT):
+	make -C ./libft
 
 clean:
 	rm -f $(OBJS)
+	make -C ./libft clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C ./libft fclean
 
 re: fclean all
