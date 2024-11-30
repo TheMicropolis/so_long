@@ -12,10 +12,20 @@ void    set_map(t_game *game)
     {
         while (game->map.array[y][x] == 1)
         {
+            game->map.wall = mlx_xpm_file_to_image(game->mlx, "textures/tile1.xpm", &game->map.collectible_img_width, &game->map.collectible_img_height);
+            mlx_put_image_to_window(game->mlx, game->win, game->map.wall, y * PIXEL, x * PIXEL);
+            x++;
+        }
+        while ((game->map.array[y][x] == 0) && game->map.array[y][x])
+        {
             game->map.ground = mlx_xpm_file_to_image(game->mlx, "textures/tile1.xpm", &game->map.collectible_img_width, &game->map.collectible_img_height);
             mlx_put_image_to_window(game->mlx, game->win, game->map.ground, y * PIXEL, x * PIXEL);
             x++;
         }
+        {
+            while (game->map.array[y][[x]] == )  /* code */
+        }
+        
         y++;
         x = 0;
     }
@@ -98,7 +108,7 @@ int	main(int ac, char **av)
     set_map(&game);
 
     game.player.player = mlx_xpm_file_to_image(game.mlx, "textures/tile1.xpm", &game.player.img_width, &game.player.img_height);
-    mlx_put_image_to_window(game.mlx, game.win, game.player.player, PIXEL, PIXEL);
+    mlx_put_image_to_window(game.mlx, game.win, game.player.player, x * PIXEL, y * PIXEL);
 
     mlx_hook(game.win, 2, 1L<<0, key_hook, &game);
 

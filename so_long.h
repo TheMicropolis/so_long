@@ -1,9 +1,17 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define WIDTH 480
-# define HEIGHT 320
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024  // Set the default buffer size to 1024 bytes
+# endif
+
 # define PIXEL 16
+
+# ifndef WIDTH
+#  define WIDTH 480
+
+# ifndef HEIGHT
+#  define HEIGHT 320
 
 # include "minilibx-linux/mlx.h"
 # include <stddef.h>
