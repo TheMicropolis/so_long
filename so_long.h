@@ -7,12 +7,6 @@
 
 # define PIXEL 16
 
-# ifndef WIDTH
-#  define WIDTH 480
-
-# ifndef HEIGHT
-#  define HEIGHT 320
-
 # include "minilibx-linux/mlx.h"
 # include <stddef.h>
 # include <stdio.h>
@@ -32,6 +26,8 @@ typedef struct s_map
     char    *map;
     char **array;
     void   *exit;
+    int    map_width;
+    int    map_height;
 }	t_map;
 
 typedef struct s_player
@@ -55,6 +51,6 @@ typedef struct s_game
 }	t_game;
 
 
-void  get_map(char *argv);
+void  get_map(char *argv, t_game *game);
 
 #endif

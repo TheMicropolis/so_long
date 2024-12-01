@@ -45,19 +45,32 @@ void check_map(char *ber)
     }
 }
 
-void    format_map(char *ber)
+void    format_map(char *ber, t_game *game)
 {
-    t_map map;
-    
-    map.array = ft_split(ber, '\n');
-    if (!map.array)
+    int y;
+
+
+    y = 0;
+    game->map.array = ft_split(ber, '\n');
+    if (!game->map.array)
     {
         printf("Map-Error\n");
         exit(1);
     }
+    while (game->map.array[y] && game->map.array[y + 1] && (ft_strlen(game->map.array[y]) == ft_strlen(game->map.array[y + 1])))
+    {
+        y++;
+    } 
+    if (game->map.array[y + 1] != NULL)
+    {
+        printf("Map  not rectangular\n");
+        exit(1);
+    }  
+    game->map.map_height = y + 1;
+    game->map.map_width = ft_strlen(game->map.array[0]);
 }
 
-void   get_map(char *argv)
+void   get_map(char *argv, t_game *game)
 {
     char *map;
     char *line;
@@ -84,5 +97,5 @@ void   get_map(char *argv)
     close(fd);
     printf("%s\n", map);
     check_map(map);
-    format_map(map);
+    format_map(map, game);
 }
