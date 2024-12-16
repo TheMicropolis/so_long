@@ -1,6 +1,6 @@
 # Compiler und Flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -I./libft -I./libft/gnl -I./libft/ft_printf
+CFLAGS = -Wall -Wextra -Werror -g -Iminilibx-linux -I./libft -I./libft/gnl -I./libft/ft_printf
 # Bibliotheken
 MLX = minilibx-linux/libmlx_Linux.a
 MLX_FLAGS = -Lminilibx-linux -lmlx -lm -lXext -lX11
@@ -10,7 +10,7 @@ LIBFT = ./libft/libft.a
 NAME = so_long
 
 # Quellen und Objekte
-SRCS = so_long.c get_map.c
+SRCS = so_long.c get_map.c exit_game.c
 OBJS = $(SRCS:.c=.o)
 
 # Regel für das Ziel

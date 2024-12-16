@@ -5,7 +5,7 @@
 #  define BUFFER_SIZE 1024  // Set the default buffer size to 1024 bytes
 # endif
 
-# define PIXEL 16
+# define PIXEL 32
 
 # include "minilibx-linux/mlx.h"
 # include <stddef.h>
@@ -20,8 +20,6 @@ typedef struct s_map
     void    *ground;
     void    *wall;
     void    *collectible_img;
-    int    collectible_img_width;
-    int    collectible_img_height;
     int     collectibles;
     char    *map;
     char **array;
@@ -37,20 +35,20 @@ typedef struct s_player
     int     y;
     int     collectibles;
     int     moves;
-    int     img_width;
-    int    img_height;
 }	t_player;
 
 typedef struct s_game
 {
     void    *mlx;
     void    *win;
-    void    *img;
     t_map   map;
     t_player player;
 }	t_game;
 
-
-void  get_map(char *argv, t_game *game);
+void    get_map(char *argv, t_game *game);
+void    free_array(t_game *game);
+void    initialize_game(t_game *game, char *argv);
+void    set_map(t_game *game);
+int     exit_game(t_game *game, int code);
 
 #endif

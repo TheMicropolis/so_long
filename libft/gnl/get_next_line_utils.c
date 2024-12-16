@@ -21,26 +21,31 @@ int	ft_strlen_gnl(const char *s)
 		n++;
 	return (n);
 }
-
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*s3;
 	char	*str;
 
 	if (!s1 && !s2)
-		return (NULL);
+		return (NULL);	
 	if (!s1)
 		return (ft_strdup_gnl(s2));
-	if (!s2)
+	if (!s2)	
 		return (ft_strdup_gnl(s1));
 	s3 = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1) * sizeof(char));
 	if (!s3)
 		return (NULL);
 	str = s3;
-	while (*s1)
-		*str++ = *s1++;
-	while (*s2)
-		*str++ = *s2++;
+	if (s1)
+	{
+		while (*s1)
+			*str++ = *s1++;
+	}
+	if (s2)
+	{
+		while (*s2)
+			*str++ = *s2++;
+	}
 	*str = '\0';
 	return (s3);
 }
