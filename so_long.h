@@ -49,6 +49,15 @@ void    get_map(char *argv, t_game *game);
 void    free_array(t_game *game);
 void    initialize_game(t_game *game, char *argv);
 void    set_map(t_game *game);
+void    set_null(t_game *game);
+void    update_player_pos(t_game *game, int x, int y);
+void    check_format(t_game *game);
+void    check_map(char *ber, t_game *game);
+void    move_player(t_game *game, int x, int y, int dy, int dx);
+void    load_images(t_game *game);
+void    free_img(t_game *game);
+void    destroy_img(void *mlx, void *img);
+int     key_hook(int keycode, t_game *game);
 int     exit_game(t_game *game, int code);
 
 #endif

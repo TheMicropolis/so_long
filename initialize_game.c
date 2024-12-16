@@ -37,14 +37,7 @@ void    set_map(t_game *game)
             else if (game->map.array[y][x] == 'C')
                 mlx_put_image_to_window(game->mlx, game->win, game->map.collectible_img, x * PIXEL, y * PIXEL);
             else if (game->map.array[y][x] == 'P') 
-            {
-                if (game->player.x == 0 && game->player.y == 0)
-                {
-                    game->player.x = x;
-                    game->player.y = y;
-                }
-                mlx_put_image_to_window(game->mlx, game->win, game->player.player, game->player.x * PIXEL, game->player.y * PIXEL);
-            }
+                update_player_pos(game, x, y);
             x++;
         }
         y++;

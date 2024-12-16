@@ -21,6 +21,19 @@ void    free_img(t_game *game)
         game->map.map = NULL;
     }
 }
+void    free_array(t_game *game)
+{
+    int i;
+
+    i = 0;
+    while (game->map.array[i])
+    {
+        free(game->map.array[i]);
+        i++;
+    }
+    free(game->map.array);
+    game->map.array = NULL;
+}
 int exit_game(t_game *game, int code)
 {
    if (game->win) 
