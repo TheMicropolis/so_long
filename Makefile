@@ -10,7 +10,7 @@ LIBFT = ./libft/libft.a
 NAME = so_long
 
 # Quellen und Objekte
-SRCS = so_long.c get_map.c exit_game.c
+SRCS = so_long.c get_map.c exit_game.c initialize_game.c utils.c
 OBJS = $(SRCS:.c=.o)
 
 # Regel für das Ziel

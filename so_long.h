@@ -54,10 +54,10 @@ void    update_player_pos(t_game *game, int x, int y);
 void    check_format(t_game *game);
 void    check_map(char *ber, t_game *game);
 void    move_player(t_game *game, int x, int y, int dy, int dx);
-void    load_images(t_game *game);
 void    free_img(t_game *game);
 void    destroy_img(void *mlx, void *img);
 int     key_hook(int keycode, t_game *game);
 int     exit_game(t_game *game, int code);
+int     load_images(t_game *game);
 
 #endif
