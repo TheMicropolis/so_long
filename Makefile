@@ -5,14 +5,11 @@ CFLAGS = -Wall -Wextra -Werror -g -Iminilibx-linux -I./libft -I./libft/gnl -I./l
 MLX = minilibx-linux/libmlx_Linux.a
 MLX_FLAGS = -Lminilibx-linux -lmlx -lm -lXext -lX11
 LIBFT = ./libft/libft.a
-
 # Ziel
 NAME = so_long
-
 # Quellen und Objekte
 SRCS = so_long.c get_map.c exit_game.c initialize_game.c utils.c
 OBJS = $(SRCS:.c=.o)
-
 # Regel für das Ziel
 all: $(NAME)
 

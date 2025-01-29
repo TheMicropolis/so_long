@@ -1,24 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialize_game.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmauri <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/16 12:21:12 by mmauri            #+#    #+#             */
+/*   Updated: 2025/01/16 12:22:52 by mmauri           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void    set_null(t_game *game)
-{
-    game->mlx = NULL;
-    game->win = NULL;
-    game->map.ground = NULL;
-    game->map.wall = NULL;
-    game->map.collectible_img = NULL;
-    game->map.collectibles = 0;
-    game->map.exit = NULL;
-    game->map.array = NULL;
-    game->map.map_height = 0;
-    game->map.map_width = 0;
-    game->map.map = NULL;
-    game->player.player = NULL;
-    game->player.x = 0;
-    game->player.y = 0;
-    game->player.collectibles = 0;
-    game->player.moves = 0;
-}
 void    set_map(t_game *game)
 {
     int x; 
@@ -43,28 +36,7 @@ void    set_map(t_game *game)
         y++;
     }
 }
-int    load_images(t_game *game)
-{
-    int width;
-    int height;
 
-    if (!game->mlx && game->win)
-    {
-        perror("Error\nFailed to initialize Minilibx\n");
-        exit_game(game, 1);
-    }
-    game->map.ground = mlx_xpm_file_to_image(game->mlx, "textures/ground.xpm", &width, &height);
-    game->map.wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &width, &height);
-    game->map.exit = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm", &width, &height);
-    game->map.collectible_img = mlx_xpm_file_to_image(game->mlx, "textures/collect.xpm", &width, &height);
-    game->player.player = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm", &width, &height);
-    if (!game->map.ground || !game->map.exit || !game->map.collectible_img || !game->player.player)
-    {
-        perror("Error\nFailed to load image(s)!\n");
-        exit_game(game, 1);
-    }
-    return (1);
-}
 void    set_walls(t_game *game)
 {
     int x;
@@ -92,6 +64,50 @@ void    set_walls(t_game *game)
         }
         y++;
     }
+}
+int    load_images(t_game *game)
+{
+    int width;
+    int height;
+
+    if (!game->mlx && game->win)
+    {
+        perror("Error\nFailed to initialize Minilibx\n");
+        exit_game(game, 1);
+    }
+    game->map.ground = mlx_xpm_file_to_image(game->mlx, "textures/ground.xpm", &width, &height);
+    game->map.wall = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm", &width, &height);
+    game->map.exit = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm", &width, &height);
+    game->map.collectible_img = mlx_xpm_file_to_image(game->mlx, "textures/collect.xpm", &width, &height);
+    game->player.player = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm", &width, &height);
+    if (!game->map.ground || !game->map.wall || !game->map.exit || !game->map.collectible_img || !game->player.player)
+    {
+        perror("Error\nFailed to load image(s)!\n");
+        exit_game(game, 1);
+    }
+    return (1);
+}
+void    set_null(t_game *game)
+{
+    game->mlx = NULL;
+    game->win = NULL;
+    game->map.ground = NULL;
+    game->map.wall = NULL;
+    game->map.collectible_img = NULL;
+    game->map.collectibles = 0;
+    game->map.exit = NULL;
+    game->map.array = NULL;
+    game->map.copy = NULL;
+    game->map.map_height = 0;
+    game->map.map_width = 0;
+    game->map.map = NULL;
+    game->map.exit_x = 0;
+    game->map.exit_y = 0;
+    game->player.player = NULL;
+    game->player.x = 0;
+    game->player.y = 0;
+    game->player.collectibles = 0;
+    game->player.moves = 0;
 }
 void   initialize_game(t_game *game, char *argv)
 {
